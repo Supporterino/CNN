@@ -55,6 +55,10 @@ export class Image {
     });
   }
 
+  getPixel(width: number, height: number): Pixel {
+    return this._pixels[width][height];
+  }
+
   setPixel(width: number, height: number, pixel: Pixel): void {
     this._pixels[width][height] = pixel;
   }
