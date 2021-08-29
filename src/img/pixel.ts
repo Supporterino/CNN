@@ -1,15 +1,15 @@
 export class Pixel {
-  private __greyScale: number;
+  private _greyScale: number;
 
   constructor(greyScale: number) {
-    this.__greyScale = greyScale;
+    this._greyScale = greyScale;
   }
 
-  public get _greyScale(): number {
-    return this.__greyScale;
+  public get greyScale(): number {
+    return this._greyScale;
   }
-  public set _greyScale(value: number) {
-    this.__greyScale = value;
+  public set greyScale(value: number) {
+    this._greyScale = value;
   }
 
   static fromRGB(red: number, green: number, blue: number) {
