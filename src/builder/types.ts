@@ -1,1 +1,3 @@
-export enum BuilderTypes {}
+export enum BuilderTypes {
+  NormalizedLayerBuilder
+}
