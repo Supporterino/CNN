@@ -3,10 +3,10 @@ import { ActivasionTypes } from '..';
 import { sigmoid } from '../../utils';
 
 export abstract class Layer {
-  private _numNodes: number;
-  private _activasionFunction: ActivasionTypes;
-  private _id: number;
-  private _nodes: Array<Node>;
+  protected _numNodes: number;
+  protected _activasionFunction: ActivasionTypes;
+  protected _id: number;
+  protected _nodes: Array<Node>;
 
   constructor(n: number, a: ActivasionTypes, i: number) {
     this._numNodes = n;
@@ -26,9 +26,24 @@ export abstract class Layer {
     }
   }
 
+  derivative(val: number): number {
+    // MAYBE BUGGED
+    return sigmoid(val) * (1 - sigmoid(val));
+  }
+
+  prevValSum(): number {
+    let output = 0;
+
+    this._nodes.forEach((node) => {
+      output += node.lastValue;
+    });
+
+    return output;
+  }
+
   protected genNodes(): void {
     for (let index = 0; index < this._numNodes; index++) {
-      this._nodes.push(new Node());
+      this._nodes.push(new Node(index, this));
     }
   }
 

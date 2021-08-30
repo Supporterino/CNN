@@ -25,7 +25,7 @@ export class NormalizingLayer extends ModifiyingLayer {
 
         output.setPixel(i, j, new Pixel(val));
 
-        this._nodes[selNode];
+        this._nodes[selNode].lastValue = val;
         selNode++;
       }
     }

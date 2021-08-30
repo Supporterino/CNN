@@ -2,6 +2,7 @@ import clear from 'clear';
 import chalk from 'chalk';
 import { textSync } from 'figlet';
 import { prompt, QuestionCollection } from 'inquirer';
+import { Builder } from '../builder';
 
 export class CLI {
   private __id: string;
@@ -13,11 +14,13 @@ export class CLI {
   async run(): Promise<any> {
     clear();
 
-    console.log(chalk.yellow(textSync('ConvolutionalNN', { horizontalLayout: 'full' })));
+    console.log(chalk.yellow(textSync('CNN', { horizontalLayout: 'full' })));
 
     const results = await this.getConfig();
 
-    console.log(results);
+    const builder = new Builder(results);
+
+    console.log(builder);
   }
 
   getConfig(): Promise<any> {
