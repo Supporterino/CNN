@@ -1,5 +1,5 @@
 import { existsSync, PathLike, lstatSync, readdirSync } from 'fs';
-import { basename } from 'path';
+import path, { basename } from 'path';
 import { cwd } from 'process';
 
 export const checkFolderExists = (path: PathLike): boolean => {
@@ -12,6 +12,10 @@ export const getCurrentBasePath = (): string => {
 
 export const getFileExtension = (path: PathLike): string => {
   return path.toString().split('.').pop()!;
+};
+
+export const getLabel = (path: PathLike): string => {
+  return path.toString().split('-').shift()!;
 };
 
 export const isDirectory = (path: PathLike): boolean => {
