@@ -1,4 +1,4 @@
-import { getFileExtension, isDirectory, listFiles } from '../utils';
+import { getFileExtension, hexToRgb, isDirectory, listFiles } from '../utils';
 import { Image } from './image';
 import { join } from 'path';
 import { readFileSync } from 'fs';
@@ -34,9 +34,13 @@ export class ImageHandler {
 
         for (let i = 0; i < img.getHeight(); i++) {
           for (let j = 0; j < img.getWidth(); j++) {
-            const pixel: number = img.getPixelColor(j, i);
+            const pixel = hexToRgb(img.getPixelColor(j, i).toString());
+
+            output.setPixel(j, i, pixel);
           }
         }
+
+        return output;
       })
       .catch((err) => {
         throw new Error(`Image loading failed. ${err}`);
