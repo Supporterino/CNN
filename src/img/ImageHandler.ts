@@ -1,7 +1,6 @@
 import { getFileExtension, hexToRgb, isDirectory, listFiles } from '../utils';
 import { Image } from './image';
 import { join } from 'path';
-import { readFileSync } from 'fs';
 import { read } from 'jimp/*';
 export class ImageHandler {
   private _size: number;

@@ -1,8 +1,9 @@
 import clear from 'clear';
 import chalk from 'chalk';
 import { textSync } from 'figlet';
-import { prompt, QuestionCollection } from 'inquirer';
+import { Answers, prompt, QuestionCollection } from 'inquirer';
 import { Builder } from '../builder';
+import PromptUI from 'inquirer/lib/ui/prompt';
 
 export class CLI {
   private __id: string;
@@ -11,7 +12,7 @@ export class CLI {
     this.__id = 'a id';
   }
 
-  async run(): Promise<any> {
+  async run(): Promise<void> {
     clear();
 
     console.log(chalk.yellow(textSync('CNN', { horizontalLayout: 'full' })));
@@ -23,13 +24,13 @@ export class CLI {
     console.log(builder);
   }
 
-  getConfig(): Promise<any> {
+  getConfig(): Promise<Answers> & { ui: PromptUI } {
     const question: QuestionCollection = [
       {
         name: 'name',
         type: 'input',
         message: 'Name your CNN:',
-        validate: (val: any) => {
+        validate: (val: string) => {
           // TODO: Add regex to make filename
           if (val === '') return 'Not a valid name';
           else return true;

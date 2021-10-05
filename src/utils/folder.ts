@@ -1,5 +1,5 @@
 import { existsSync, PathLike, lstatSync, readdirSync } from 'fs';
-import path, { basename } from 'path';
+import { basename } from 'path';
 import { cwd } from 'process';
 
 export const checkFolderExists = (path: PathLike): boolean => {
