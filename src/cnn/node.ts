@@ -1,4 +1,4 @@
-import { Filter, Layer } from '.';
+import { ConvolutionLayer, Filter, Layer, OutputLayer } from '.';
 
 export class Node {
   private _filter: Filter;
@@ -23,7 +23,14 @@ export class Node {
     return this._lastValue;
   }
 
-  calculateError(val: number): void {}
+  calculateError(val: number): void {
+    if (this._layer instanceof OutputLayer) {
+      this._error = val - this._lastValue;
+      this._error *= this._layer.derivative(this._lastValue);
+    } else if (this._layer instanceof ConvolutionLayer) {
+      this._error += val * this._layer.derivative(this._lastValue);
+    }
+  }
 
   resetError(): void {
     this._error = 0;
