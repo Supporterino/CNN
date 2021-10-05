@@ -19,14 +19,14 @@ export class ImageHandler {
 
     fileNames.forEach(async (file) => {
       if (getFileExtension(file) === 'png') {
-        output.push(await handle(join(path.toString(), file)));
+        output.push(await this.handle(join(path.toString(), file)));
       }
     });
 
     return output;
   }
 
-  async handle(path: string): Image {
+  async handle(path: string): Promise<Image> {
     read(path)
       .then((img) => {
         img = img.resize(this._size, this._size);
@@ -45,6 +45,7 @@ export class ImageHandler {
       .catch((err) => {
         throw new Error(`Image loading failed. ${err}`);
       });
+    throw new Error(`Image read wasn't executed!`);
   }
 
   public get size(): number {

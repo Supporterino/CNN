@@ -19,7 +19,7 @@ export class CLI {
     const results = await this.getConfig();
 
     const builder = new Builder(results);
-
+    await builder.run();
     console.log(builder);
   }
 
